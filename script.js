@@ -21,18 +21,18 @@ document.addEventListener("DOMContentLoaded", function () {
         // Don't add empty tasks
         if (taskText === "") return;
 
-        // Create a new list item
+        // Create new list item
         const li = document.createElement("li");
 
-        // Create a checkbox
+        // Create checkbox
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
 
-        // Create a span to hold the task text
+        // Create span to hold the task text
         const taskSpan = document.createElement("span");
         taskSpan.textContent = taskText;
 
-        // Create a delete button
+        // Create delete button
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "X";
 
