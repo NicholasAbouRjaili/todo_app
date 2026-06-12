@@ -1,14 +1,49 @@
-const addBtn = document.getElementById("addBtn");
-const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
+document.addEventListener("DOMContentLoaded", function () {
+    const addBtn = document.getElementById("addBtn");
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
 
-addBtn.addEventListener("click", function () {
-    const taskText = taskInput.value;
+    if (!addBtn || !taskInput || !taskList) {
+        console.error("Required DOM elements not found", { addBtn, taskInput, taskList });
+        return;
+    }
 
-    const li = document.createElement("li");
-    li.textContent = taskText;
+    function addTask() {
+        const taskText = taskInput.value.trim();
+        if (taskText === "") return;
 
-    taskList.appendChild(li);
+        const li = document.createElement("li");
 
-    taskInput.value = "";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+
+        const taskSpan = document.createElement("span");
+        taskSpan.textContent = taskText;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "X";
+
+        checkbox.addEventListener("change", function () {
+            taskSpan.style.textDecoration = checkbox.checked ? "line-through" : "none";
+        });
+
+        deleteBtn.addEventListener("click", function () {
+            li.remove();
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(taskSpan);
+        li.appendChild(deleteBtn);
+
+        taskList.appendChild(li);
+
+        taskInput.value = "";
+    }
+
+    addBtn.addEventListener("click", addTask);
+    taskInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") addTask();
+    });
+
+    console.log("script.js loaded and ready");
 });
