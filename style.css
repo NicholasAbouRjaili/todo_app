@@ -1,26 +1,25 @@
-
-h1{
-    text-align: left;
+h1 {
+  text-align: left;
 }
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 ul {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0;
 }
 
 li span {
-    display: inline;
+  display: none;
 }
 
 li button {
-    cursor: pointer;
+  cursor: pointer;
 }

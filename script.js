@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskList = document.getElementById("taskList");
 
     // Make sure all required elements exist
-    if (!addBtn || !taskInput || !taskList) {
+    if (!addBtn || taskInput || !taskList) {
         console.error("Required DOM elements not found", { addBtn, taskInput, taskList });
         return;
     }
