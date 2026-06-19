@@ -1,9 +1,13 @@
 h1 {
   text-align: left;
 }
+<<<<<<< HEAD
 body {
   font-family: Arial, sans-serif;
 }
+=======
+
+>>>>>>> 1ce3186 (code enhancement prep)
 
 ul {
   padding-left: 0;
@@ -21,5 +25,59 @@ li span {
 }
 
 li button {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #b3c4e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+header h1 {
+    color: #043c75;
+}
+
+#container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+#taskInput {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    color: #b71515;
+}
+
+#addBtn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4f46e5;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#addBtn:hover {
+    background-color: #4338ca;
+}
+
+#taskList {
+    margin-top: 20px;
+    padding-left: 20px;
+    color: #2c3e50;
+}
+
+#taskList li {
+    margin-bottom: 8px;
 }

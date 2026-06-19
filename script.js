@@ -12,6 +12,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // Display the number of tasks when the app loads
+    const taskCount = taskList.children.length;
+
+    if (taskCount === 0) {
+        console.log("No tasks yet");
+    } else if (taskCount === 1) {
+        console.log("1 task to do");
+    } else {
+        console.log(`${taskCount} tasks to do`);
+    }
+
     // Function to create and add a new task
     function addTask() {
 
@@ -53,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         li.appendChild(deleteBtn);
 
         console.log("Adding task:", taskText);
+
         // Add the list item to the task list
         taskList.appendChild(li);
 
