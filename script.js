@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         li.appendChild(taskSpan);
         li.appendChild(deleteBtn);
 
+        console.log("Adding task:", taskText);
         // Add the list item to the task list
         taskList.appendChild(li);
 
