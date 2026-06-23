@@ -1,13 +1,9 @@
-h1 {
+#pageTitle {
   text-align: left;
 }
-<<<<<<< HEAD
-body {
+#BODY {
   font-family: Arial, sans-serif;
 }
-=======
-
->>>>>>> 1ce3186 (code enhancement prep)
 
 ul {
   padding-left: 0;
@@ -21,7 +17,8 @@ li {
 }
 
 li span {
-  display: none;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 li button {

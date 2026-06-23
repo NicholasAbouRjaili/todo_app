@@ -7,21 +7,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskList = document.getElementById("taskList");
 
     // Make sure all required elements exist
-    if (!addBtn || taskInput || !taskList) {
-        console.error("Required DOM elements not found", { addBtn, taskInput, taskList });
+    if (!addBtn || !taskInput || !taskList) {
+        console.error("Required DOM elements not found", {
+            addBtn,
+            taskInput,
+            taskList
+        });
         return;
     }
 
-    // Display the number of tasks when the app loads
-    const taskCount = taskList.children.length;
+    // Function to display the current number of tasks
+    function updateTaskCount() {
+        const taskCount = taskList.children.length;
 
-    if (taskCount === 0) {
-        console.log("No tasks yet");
-    } else if (taskCount === 1) {
-        console.log("1 task to do");
-    } else {
-        console.log(`${taskCount} tasks to do`);
+        if (taskCount === 0) {
+            console.log("No tasks yet");
+        } else if (taskCount === 1) {
+            console.log("1 task to do");
+        } else {
+            console.log(`${taskCount} tasks to do`);
+        }
     }
+
+    // Show task count when the page loads
+    updateTaskCount();
 
     // Function to create and add a new task
     function addTask() {
@@ -32,56 +41,57 @@ document.addEventListener("DOMContentLoaded", function () {
         // Don't add empty tasks
         if (taskText === "") return;
 
-        // Create new list item
+        // Create a new list item
         const li = document.createElement("li");
 
-        // Create checkbox
+        // Create a checkbox
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
 
-        // Create span to hold the task text
+        // Create a span to hold the task text
         const taskSpan = document.createElement("span");
         taskSpan.textContent = taskText;
 
-        // Create delete button
+        // Create a delete button
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "X";
 
-        // Cross out the task when the checkbox is checked
+        // Cross out the task when checked
         checkbox.addEventListener("change", function () {
             taskSpan.style.textDecoration =
                 checkbox.checked ? "line-through" : "none";
         });
 
-        // Remove the task when the X button is clicked
+        // Delete the task when X is clicked
         deleteBtn.addEventListener("click", function () {
             li.remove();
+            updateTaskCount();
         });
 
-        // Add the checkbox, text, and button to the list item
+        // Add elements to the list item
         li.appendChild(checkbox);
         li.appendChild(taskSpan);
         li.appendChild(deleteBtn);
 
-        console.log("Adding task:", taskText);
-
-        // Add the list item to the task list
+        // Add the task to the list
         taskList.appendChild(li);
 
-        // Clear the input box after adding the task
+        // Clear the input
         taskInput.value = "";
+
+        // Update task count
+        updateTaskCount();
     }
 
-    // Add a task when the Add button is clicked
+    // Add task when button is clicked
     addBtn.addEventListener("click", addTask);
 
-    // Add a task when Enter is pressed inside the input field
+    // Add task when Enter is pressed
     taskInput.addEventListener("keydown", function (e) {
         if (e.key === "Enter") {
             addTask();
         }
     });
 
-    // Confirmation message in the browser console
     console.log("script.js loaded and ready");
 });
