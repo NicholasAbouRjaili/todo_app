@@ -16,6 +16,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // Create a button to show/hide deleted tasks
+    const showDeletedBtn = document.createElement("button");
+    showDeletedBtn.textContent = "Show Deleted Tasks";
+    showDeletedBtn.style.display = "none";
+
+    // Create a hidden deleted task list
+    const deletedTaskList = document.createElement("ul");
+    deletedTaskList.style.display = "none";
+
+    // Add them to the page
+    taskList.parentNode.appendChild(showDeletedBtn);
+    taskList.parentNode.appendChild(deletedTaskList);
+
     // Function to display the current number of tasks
     function updateTaskCount() {
         const taskCount = taskList.children.length;
@@ -56,42 +69,58 @@ document.addEventListener("DOMContentLoaded", function () {
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "X";
 
-        // Highlight the task in green when checked
+        // Highlight completed tasks in green
         checkbox.addEventListener("change", function () {
-        if (checkbox.checked) {
-            taskSpan.style.textDecoration = "line-through";
-            taskSpan.style.color = "lightgreen";
-        } else {
-            taskSpan.style.textDecoration = "none";
-            taskSpan.style.color = "";
-        }});
-    
+            if (checkbox.checked) {
+                taskSpan.style.textDecoration = "line-through";
+                taskSpan.style.color = "green";
+            } else {
+                taskSpan.style.textDecoration = "none";
+                taskSpan.style.color = "";
+            }
+        });
 
-        // Delete the task when X is clicked
+        // Delete task and move it to hidden list
         deleteBtn.addEventListener("click", function () {
+
+            const deletedLi = document.createElement("li");
+            deletedLi.textContent = taskSpan.textContent;
+
+            deletedTaskList.appendChild(deletedLi);
+
+            // Show the deleted tasks button after first deletion
+            showDeletedBtn.style.display = "inline-block";
+
             li.remove();
+
             updateTaskCount();
         });
-        if (checkbox.checked) {
-            taskSpan.style.textDecoration = "line-through";
-        } else {
-            taskSpan.style.textDecoration = "none";
-        }
 
-        // Add elements to the list item
+        // Add elements to the task item
         li.appendChild(checkbox);
         li.appendChild(taskSpan);
         li.appendChild(deleteBtn);
 
-        // Add the task to the list
+        // Add task to the visible list
         taskList.appendChild(li);
 
-        // Clear the input
+        // Clear the input field
         taskInput.value = "";
 
         // Update task count
         updateTaskCount();
     }
+
+    // Show/hide deleted tasks list
+    showDeletedBtn.addEventListener("click", function () {
+        if (deletedTaskList.style.display === "none") {
+            deletedTaskList.style.display = "block";
+            showDeletedBtn.textContent = "Hide Deleted Tasks";
+        } else {
+            deletedTaskList.style.display = "none";
+            showDeletedBtn.textContent = "Show Deleted Tasks";
+        }
+    });
 
     // Add task when button is clicked
     addBtn.addEventListener("click", addTask);
