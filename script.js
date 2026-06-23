@@ -56,17 +56,27 @@ document.addEventListener("DOMContentLoaded", function () {
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "X";
 
-        // Cross out the task when checked
+        // Highlight the task in green when checked
         checkbox.addEventListener("change", function () {
-            taskSpan.style.textDecoration =
-                checkbox.checked ? "line-through" : "none";
-        });
+        if (checkbox.checked) {
+            taskSpan.style.textDecoration = "line-through";
+            taskSpan.style.color = "lightgreen";
+        } else {
+            taskSpan.style.textDecoration = "none";
+            taskSpan.style.color = "";
+        }});
+    
 
         // Delete the task when X is clicked
         deleteBtn.addEventListener("click", function () {
             li.remove();
             updateTaskCount();
         });
+        if (checkbox.checked) {
+            taskSpan.style.textDecoration = "line-through";
+        } else {
+            taskSpan.style.textDecoration = "none";
+        }
 
         // Add elements to the list item
         li.appendChild(checkbox);
